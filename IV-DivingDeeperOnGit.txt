@@ -1,0 +1,70 @@
+In this module we will dive deeper in the many utilities GIT offers to us.
+
+
+                                                                        52 - GIT STASH
+
+With git stash you can save unsaved unstaged changes, thats great! Imagine if you are working on a feature, but forgot to switch off from the master branch, and now, if you commit those lines, the branch you are working currently will be messed up. Yet, you dont want to lose your progress in the features you are adding
+
+Dont worry, use GIT STASH to save "internally". This will throw you back to the latest commit. To return to the stashed position, just type "  git stash apply  "
+
+If you create more than 1 stash. type " git stash list ", this will show an indexed list of your stashes
+
+--- STASH MESSAGES ---
+BE CAREFUL: When there is too much stashes, it will be confusing to work only with indexs number. That's why is a great practice to add messages into stashes, to do so
+you must type "     git stash push -m <Message Here>    "
+
+--- ADDING STASH TO THE BRANCH ---
+Use "  git stash pop <desired index> " to merge the stash with the current branch.
+
+
+--- DELETE STASHES ---
+You can use " git stash drop <desired index> " to drop a stash. You can also use "  git stash clear  " TO DELETE THE ENTIRE STASH LIST.
+
+
+
+
+                                                                        53 - GIT REFLOG
+Git Reflog is used to recover lost changes in your project. Lets see how!
+
+So, lets say you gave a " git reset --hard HEAD~1  ". I mean, you've deleted files and got back to the previous commit, but now you want to undo those changes.
+
+To do so, use " git reflog ", this command will show every changed applied on the branch and give the ID of which one of these changes.
+
+When you find the desired change you want to go back, type " git reset --hard <change_id> ". This will bring the desired change to the head of the current branch
+
+
+--- REFLOGING BRANCHES ---
+So, you commited a change into a parallel branch, then deleted it. But now your regreting this, don't worry. You can bring the branch from the dead, or kinda.
+
+1. use " git reflog " to view the desired commit id
+
+2. use " git checkout <commit_id>  " to enter detached head mode with the commit.
+
+3. now, " git switch -c back_from_hell_branch ". this will bring your branch back, straight from detached head
+
+
+
+
+                                                                55 - UNDERSTANDING MERGE TYPES
+
+We Have a total of 8 types of merge. Those are:
+
+    1 - Fast-Forward ==> HAPPENS WHEN there was no additional commit in the master (after a feature branch was created) [In this case, Merge moves HEAD forward but doesnt create a new commit]
+
+        1.1 - Recursive-FF
+        1.2 - Ours-FF
+        1.3 - Octopus-FF
+        1.4 - Subtree-FF
+
+    2 - Non Fast-Forward
+        1.1 - Recursive-NF
+        1.2 - Ours-NF
+        1.3 - Octopus-NF
+        1.4 - Subtree-NF
+
+
+    *** "  Use git merge --squash <feature_branch>  " to move the files of <feature_branch> to the current branch. This will only transfer the files, so then you will need to add and commit them into the current branch.   [   Basically, Squash flag doesnt update the head   ].
+
+
+                                                                58 - Git Rebase
+Git rebase 

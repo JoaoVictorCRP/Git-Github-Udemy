@@ -1,0 +1,75 @@
+ 
+------------------------------------ DELETING FILES --------------------------------------
+First you might want to see what files are staged in the repo, use "git ls-files" to do so.
+after, you can use "git rm file_name" to delete the staged file.
+
+
+--------------------------------- UNDOING UNSTAGED CHANGES -------------------------------
+Let's say you want to undo some lines in the file "my-text.txt" that you didn't staged yet.
+How do you do this? You might just do a checkout to the file. Like:
+"git checkout my-text.txt", this will overwrite the unstaged file with staged (and older)
+one.  You can also undo changes in all the files from the directory, simply type
+"git checkout ." - This means you want to checkout all files to the head commit.
+
+
+==> Git v2.2 NEW COMMAND: "git restore { . / {filename} }
+
+==> If you want to delete NEW unstaged files, you might use "git clean". Well, first
+type in the parameters "-dn" to describe what files will be cleaned away! [Important]
+Then, you must use the "-df" parameters to delete those files, (Obs: f stands for
+force, n stands for entries).
+
+
+--------------------------------- UNDOING STAGED CHANGES ---------------------------------
+Okay, so you've staged a file you dont want to commit anymore, how to delete it?
+simple, use "git restore " --staged <filename> "
+
+
+---------------------------------  DELETING COMMIT ---------------------------------------
+You can use "git reset" to go back reset the branch to previous commits, the syntax
+works like this:
+                    1. "git reset --soft HEAD~{x}"  (x = number of commits u wanna go backward)
+
+                    2. "git reset HEAD~{x} "
+
+                    3. "git reset --hard HEAD~{x}"
+
+1 => " --soft " parameter will make the files stay in the staging area.
+
+2 => Default version will delete it even from the staging area (it will become an untracked file).
+
+3 => " --hard" parameter will delete from both the staging area and from the working directory!
+
+
+
+---------------------------------  DELETING BRANCHES ---------------------------------------
+"git branch -D branch_name" => Force deletion (will delete branch, even tough it was merged)
+
+"git branch -d branch_name" => Only delete branch if it wasnt merged
+
+
+
+-------------------------- SAVING DETACHED HEAD COMMITS ------------------------------------
+So, you're in detached head mode, made some commits. BUT, you know that you cant really save your
+commits from detached head, right?
+Ok, but there's a solution, once you go back to a "normal branch", i mean, leave the DH mode, you have
+to create a new branch with:
+                                " git branch <branch_name> <dh_id> "
+
+Alternatively, a branch can be created while inside the detached Head mode...
+
+Well, after one of this two solutions ou might want to merge it, just go to the main branch and then...
+    " git merge < dh_branch >"
+
+
+---------------------------------- GitIgnore TRICKS ----------------------------------------
+Let's say you want to ignore all log files, but one specific, called "test.log". How can we
+do this? Like this:
+
+*.log
+!test.log     // Yes, a logical expression in .gitignore
+
+
+What if i want to ignore an entire folder? the folder is called "usless".
+
+usless/*

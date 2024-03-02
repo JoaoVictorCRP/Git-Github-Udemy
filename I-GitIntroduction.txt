@@ -1,0 +1,63 @@
+With git, we can make turn a local directory into a Working directory with "git init",
+UNDER THE HOOD -> "git init" triggers the creation of a hidden folder in the directory, this folder is the "repository. WITH THIS, GIT TRACKS THE CHANGES IN THE PROJECT.
+Git Commit: Creates a "Snapshot" of your code. (Page 18 of .pdf)
+by default, git stores all commits in the "master" branch (aka main branch)
+
+
+BRANCHES: Used mainly to create different features on a module, so then, when completed,  throw this changes into the master branch (this is called " merge ".
+
+
+-------------------------------- INITIALIZING REPOSITORY --------------------------------
+
+"git init" ---> create a new repo
+
+"git status" ---> check the untracked files (files that are not in the repo)
+
+"git add . " ---> add all files in the folder to the repo
+
+" git commit -m {message} "  ---> commiting changes
+
+"git log" ---> shows information of last commit, such as the COMMIT ID, AUTHOR AND DATE.
+
+*** "git checkout {commit_id}" ---> return to the stage of the commit referenced (to go back simply run "git checkout master" )
+
+
+-------------------------------- BRANCHES AND COMMITS --------------------------------
+
+"git branch" ---> see the branches on the PROJECT
+
+"git branch my-second-branch" ---> create a new branch named "my-second-branch"
+
+"git checkout my-second-branch" ---> switching to this new branch
+
+*****  THE NEW BRANCH WILL BE A FULL COPY OF THE MASTER BRANCH!
+
+
+***** SHORTCUT FOR CREATING A NEW BRANCH AND CHECKINGOUT IMMEDIATELY
+
+"git checkout -b third-branch " ---> creating a new branch "third branch" and checking it out
+
+
+-------------------------------- MERGING --------------------------------
+
+"git merge third-branch " ---> merging current branch with third-branch
+
+
+--------------------------------  HEAD  ----------------------------------
+The "HEAD" in git log refers to the latest commit in the branch.
+
+
+---------------------------  DETACHED HEAD  ------------------------------
+A detached head refers to a checked-out commit that isn't the latest commit
+in the branch, basically its about going especifically to a commit, detatching
+it from the branch.
+
+
+---------------------------  NEW COMMANDS --------------------------------
+In Git v2.23 a new command was implemented, that is "git switch", which
+allows us to switch branches (especifically), this is pretty interesting
+since using "git checkout" for both branches and commits can be a bit
+confusing. Right?
+
+TIP: You can use "git switch -c branch_name" to create and immediately
+switch to a branch!
